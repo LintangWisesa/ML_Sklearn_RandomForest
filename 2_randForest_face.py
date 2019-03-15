@@ -24,10 +24,10 @@ xtra, xtes, ytra, ytes = train_test_split(
 # print(ytra[0])
 
 # ===============================
-# decision tree
+# random forest
 
-from sklearn.tree import DecisionTreeClassifier
-model = DecisionTreeClassifier()
+from sklearn.ensemble import RandomForestClassifier
+model = RandomForestClassifier(n_estimators=40)
 
 # train
 model.fit(xtra, ytra)
@@ -43,19 +43,12 @@ print(ytes[0])
 # ===============================
 # plot
 
-# plt.figure('Wajah', figsize=(10,4))
-# for i in range(10):
-    # person = 15       
-    # start: 0 end: 39
-    # plt.subplot(2, 5, i + 1)
-    # plt.imshow(wajah['images'][i + (10 * person)], cmap = 'gray')
-    # plt.suptitle('Wajah orang ke-{}'.format(person))
-
 plt.figure('Prediksi', figsize=(4,4))
 plt.imshow(xtes[0].reshape(64,64), cmap = 'gray')
-plt.title('Aktual: {} / Prediksi: {}'.format(
+plt.title('Aktual: {} / Prediksi: {} / Akurasi: {}'.format(
     ytes[0],
-    model.predict([xtes[0]])[0]
+    model.predict([xtes[0]])[0],
+    str(model.score(xtes, ytes) * 100) + ' %'
 ))
 
 plt.show()

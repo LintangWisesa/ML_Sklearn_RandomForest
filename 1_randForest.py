@@ -50,8 +50,9 @@ xplot = xtes.iloc[0].values.reshape(8,8)
 
 plt.figure('Digits', figsize=(5,5))
 plt.imshow(xplot, cmap='gray')
-plt.title('Aktual: {} / Prediksi: {}'.format(
+plt.title('Aktual: {} / Prediksi: {} / Akurasi: {}'.format(
     ytes.iloc[0],
-    modelR.predict([xtes.iloc[0]])[0]
+    modelR.predict([xtes.iloc[0]])[0],
+    str(round(modelR.score(xtes, ytes) * 100)) + ' %'
 ))
 plt.show()
